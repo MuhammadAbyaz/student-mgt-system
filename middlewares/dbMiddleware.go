@@ -7,10 +7,9 @@ import (
 )
 
 func DbMiddleware() gin.HandlerFunc{
-	dbInstance := db.ConnectToDB()
 	return func(ctx *gin.Context) {
+		dbInstance := db.ConnectToDB()
 		ctx.Set("db", dbInstance)	
 		ctx.Next()
-		db.Close(dbInstance)
 	}
 }
